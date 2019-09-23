@@ -28,12 +28,63 @@ public class siriusadmin {
             element = driver.findElement(By.id("txtPassword"));
             element.click();
             element.sendKeys("rules");
-            Thread.sleep(2000);
             element = driver.findElement(By.id("sub"));
             element.click();
+
+            Thread.sleep(4000);
+            driver.findElement(By.xpath("//*[@id=\"Tab5\"]")).click();
+
             Thread.sleep(2000);
-            element.findElement(By.id(""));
-            element.click();
+            driver.findElement(By.xpath("//*[@id=\"$PD_RulesExplorerData$ppxResults$l6\"]/ul[1]/li[1]")).click();
+
+            Thread.sleep(1000);
+            driver.findElement(By.xpath("//*[@id=\"$PD_RulesExplorerData$ppxResults$l6$ppxResults$l12\"]/ul/li[2]")).click();
+
+            Thread.sleep(1000);
+            driver.switchTo().frame("PegaGadget0Ifr");
+            driver.findElement(By.xpath("//tr[@id='$PpgRepPgSubSectionpzViewInstancesB$ppxResults$l1']/td/div")).click();
+
+
+
+
+
+
+
+           /** try {
+
+                driver.findElement(By.xpath("//*[@id=\"PegaGadget0Ifr\"]")).click();
+
+            }catch (Exception e) {
+                System.out.println("Некорректное число");
+            }
+
+
+            /**vghggh*/
+
+
+
+       /**     try {
+
+                driver.findElement(By.xpath("//*[@id=\"EXPAND-OUTERFRAME\"]")).click();
+
+            }catch (Exception e) {
+                System.out.println("Некорректное число");
+            }
+
+            try {
+
+                driver.findElement(By.xpath("//*[@id=\"EXPAND-OUTERFRAME\"]")).click();
+
+            }catch (Exception e) {
+                System.out.println("Некорректное число");
+            }*/
+
+
+
+            //driver.findElement(By.cssSelector("button.btn.btn-default")).click();
+            //driver.findElement(By.xpath("//*[@id=\"RULE_KEY\"]/div")).click();
+
+
 
 
 
