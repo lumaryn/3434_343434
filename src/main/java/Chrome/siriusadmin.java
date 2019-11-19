@@ -1,6 +1,6 @@
 package Chrome;
 
-import org.junit.jupiter.api.Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
 public class siriusadmin {
-    @Test
+
     public static void main(String[] args) throws InterruptedException {
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
@@ -42,7 +42,43 @@ public class siriusadmin {
 
             Thread.sleep(1000);
             driver.switchTo().frame("PegaGadget0Ifr");
+            Thread.sleep(1000);
             driver.findElement(By.xpath("//tr[@id='$PpgRepPgSubSectionpzViewInstancesB$ppxResults$l1']/td/div")).click();
+            driver.switchTo().defaultContent();
+            Thread.sleep(1000);
+            driver.switchTo().frame("PegaGadget1Ifr");
+            driver.findElement(By.xpath("//*[@id=\"RULE_KEY\"]/div/div/div/div[2]/div/div/div/div/div[3]/div/div/span")).click();
+
+            for(String winHandle : driver.getWindowHandles()){
+                driver.switchTo().window(winHandle);
+            }
+            Thread.sleep(1000);
+            element = driver.findElement(By.xpath("//*[@id='pyConnectionFactory']"));
+            element.click();
+            element.sendKeys("jms/Q.APKKB.CF");
+            element = driver.findElement(By.xpath("//*[@id=\"pyDestination\"]"));
+            element.click();
+            element.sendKeys("jms/ESB.APKKB.REQUEST");
+
+            driver.findElement(By.xpath("//*[@id=\"HarnessFooter\"]/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[1]")).click();
+
+            element = driver.findElement(By.xpath("//*[@id='EXPAND']"));
+            element.click();
+            VariableA a = new VariableA();
+            StringBuffer b = a.getA(a.getA());
+
+            element.sendKeys(b);
+
+
+
+
+            //Thread.sleep(500);
+            //driver.switchTo().parentFrame();
+            //driver.switchTo().frame("PegaGadget1Ifr");
+            //driver.findElement(By.xpath("//*[@id=\\\"RULE_KEY\\\"]/div/div/div/div[2]/div/div/div/div/div[3]/div/div/span")).click();
+           // driver.switchTo().frame("PegaGadget1Ifr");
+          //  (.//*[normalize-space(text()) and normalize-space(.)='JNDI Server'])[3]/following::span[4]
+          //  driver.findElement(By.xpath("//*[@id=\"RULE_KEY\"]/div/div/div/div[2]/div/div/div/div/div[3]/div/div/span"));
 
 
 
@@ -83,9 +119,6 @@ public class siriusadmin {
 
             //driver.findElement(By.cssSelector("button.btn.btn-default")).click();
             //driver.findElement(By.xpath("//*[@id=\"RULE_KEY\"]/div")).click();
-
-
-
 
 
 

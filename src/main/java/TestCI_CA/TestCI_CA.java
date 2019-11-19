@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public class TestCI_CA {
-        public static void main(String[] args) throws InterruptedException {
+        public static void main(String[] args) {
 
             System.setProperty("webdriver.ie.driver", "C:\\IEDriverServer_Win32_3.8.0\\IEDriverServer.exe");
 
@@ -24,7 +24,7 @@ public class TestCI_CA {
                 element = driver.findElement(By.id("sub"));
                 element.click();
 
-                Thread.sleep(1000);
+               // Thread.sleep(1000);
 
 
              // driver.get("http://sbpgs2-qa.bpm.lanit:9080/prweb/PRServlet/3EmOSbam7UQMneCCqrdaiQ%5B%5B*/!STANDARD");
