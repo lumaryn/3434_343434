@@ -1,19 +1,30 @@
 package Chrome;
 
 
+import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Scanner;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Condition.*;
 
 public class siriusadmin {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 
@@ -37,22 +48,23 @@ public class siriusadmin {
             Thread.sleep(2000);
             driver.findElement(By.xpath("//*[@id=\"$PD_RulesExplorerData$ppxResults$l6\"]/ul[1]/li[1]")).click();
 
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             driver.findElement(By.xpath("//*[@id=\"$PD_RulesExplorerData$ppxResults$l6$ppxResults$l12\"]/ul/li[2]")).click();
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.switchTo().frame("PegaGadget0Ifr");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.findElement(By.xpath("//tr[@id='$PpgRepPgSubSectionpzViewInstancesB$ppxResults$l1']/td/div")).click();
             driver.switchTo().defaultContent();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             driver.switchTo().frame("PegaGadget1Ifr");
+            Thread.sleep(1500);
             driver.findElement(By.xpath("//*[@id=\"RULE_KEY\"]/div/div/div/div[2]/div/div/div/div/div[3]/div/div/span")).click();
 
             for(String winHandle : driver.getWindowHandles()){
                 driver.switchTo().window(winHandle);
             }
-            Thread.sleep(1000);
+            Thread.sleep(1500);
             element = driver.findElement(By.xpath("//*[@id='pyConnectionFactory']"));
             element.click();
             element.sendKeys("jms/Q.APKKB.CF");
@@ -60,17 +72,92 @@ public class siriusadmin {
             element.click();
             element.sendKeys("jms/ESB.APKKB.REQUEST");
 
+
+            int i = 0;
+            while ( i<2) {
+
+
             driver.findElement(By.xpath("//*[@id=\"HarnessFooter\"]/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[1]")).click();
 
-            element = driver.findElement(By.xpath("//*[@id='EXPAND']"));
-            element.click();
-            VariableA a = new VariableA();
-            StringBuffer b = a.getA(a.getA());
 
-            element.sendKeys(b);
+                element = driver.findElement(By.xpath("//*[@id='EXPAND']"));
+                element.click();
+                // VariableA XMLka = new VariableA();
+                //String a = XMLka.getA();
+                //System.out.println(a);
+                // element.sendKeys(a);
+
+            /*StringSelection selection = new StringSelection(a);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(selection, selection);*/
+                String a = "";
+                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test2.txt"));
+                a = br.readLine();
+                br.close();
 
 
+               // String x = "xxx";
 
+                BufferedReader br2 = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test3.txt"));
+
+
+                String num2 = br2.readLine();
+                int num = Integer.parseInt(num2);
+                num++;
+                num2 = Integer.toString(num);
+                br2.close();
+
+                String content = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\test.txt"));
+                content = content.replaceAll(a, "xxx"+num);
+                IOUtils.write(content, new FileOutputStream("C:\\Users\\user\\Desktop\\test.txt"));
+
+
+                FileWriter wr = new FileWriter("C:\\Users\\user\\Desktop\\test2.txt");
+                wr.write("xxx"+num);
+                wr.close();
+
+                FileWriter wr2 = new FileWriter("C:\\Users\\user\\Desktop\\test3.txt");
+                wr2.write(num2);
+                wr2.close();
+
+
+                String s = "";
+                Scanner in = new Scanner(new File("C:\\Users\\user\\Desktop\\test.txt"));
+                while (in.hasNext())
+                    s += in.nextLine() + "\r\n";
+                in.close();
+
+                StringSelection selection = new StringSelection(s);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, selection);
+                element.sendKeys(Keys.CONTROL, "v");
+                driver.findElement(By.xpath("//*[@id='HarnessFooter']/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[2]/button")).click();
+
+            i++;
+            }
+
+
+      /*      BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test.txt"));
+            // a = br.readLine();
+            String b;
+
+            while( ( b = br.readLine() ) != null ) {
+
+                StringSelection selection = new StringSelection(b);
+                Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                clipboard.setContents(selection, selection);
+                element.sendKeys(Keys.CONTROL, "v");
+
+                StringSelection stringSelection = new StringSelection("");
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
+                        stringSelection, null);
+
+            }*/
+
+           // element.sendKeys(Keys.CONTROL, "v");
+
+            //driver.findElement(By.xpath("//*[@id='HarnessFooter']/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[1]")).click();
+//*[@id="HarnessFooter"]/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[2]/button
 
             //Thread.sleep(500);
             //driver.switchTo().parentFrame();
