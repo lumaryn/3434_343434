@@ -17,14 +17,20 @@ public class testcrmmanager1 {
 
             WebElement element = driver.findElement(By.className("inputBox"));
             element.click();
-            element.sendKeys("testcrmmanager1");
+            element.sendKeys("TestClientManager_CA_SBPGS2");
             element = driver.findElement(By.id("txtPassword"));
             element.click();
             element.sendKeys("rules");
             element = driver.findElement(By.id("sub"));
             element.click();
 
-            Thread.sleep(1000);
+            Thread.sleep(2000);
+
+            element = driver.findElement(By.xpath("//*[@id=\"pyDisplayHarness.WorkSearch.ByName\"]"));
+            element.click();
+            element.sendKeys("Deal-xxx5");
+            driver.findElement(By.xpath("//*[@id='RULE_KEY']/div/div/div/div[7]/span/button"));
+
         }
     }
 }
