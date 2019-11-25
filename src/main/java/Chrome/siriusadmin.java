@@ -72,24 +72,26 @@ public class siriusadmin {
             element.sendKeys("jms/ESB.APKKB.REQUEST");
 
 
-            BufferedReader br5 = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\OPF_work.txt"));
+            BufferedReader br5 = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\for autotest\\OPF_work.txt"));
             List<String> IDofOPF = new ArrayList<>();
-            String b = "";
+            String b;
 
-          /**  int r = 147;
-            for (int i = 0; i < r; i++);*/
+            int r = 147;
+            for (int j = 0; j < r; j++)
 
-          while ((br5.readLine() != null))
+         // while ((br5.readLine() != null))
             {
                 b = br5.readLine();
                 IDofOPF.add(b);
             }
-            List<String> IDofOPF1 = new ArrayList<>(new LinkedHashSet<>(IDofOPF));
+           // List<String> IDofOPF1 = new ArrayList<>(new LinkedHashSet<>(IDofOPF));
+            br5.close();
+
 
 
             int i = 0;
             int Conec = 0;
-            while (i < 5) {
+            while (i < 2) {
 
 
                 driver.findElement(By.xpath("//*[@id=\"HarnessFooter\"]/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[1]")).click();
@@ -106,14 +108,14 @@ public class siriusadmin {
             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
             clipboard.setContents(selection, selection);*/
                 String a = "";
-                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test2.txt"));
+                BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\for autotest\\test2.txt"));
                 a = br.readLine();
                 br.close();
 
 
                 // String x = "xxx";
 
-                BufferedReader br2 = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test3.txt"));
+                BufferedReader br2 = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\for autotest\\test3.txt"));
 
                 String num2 = br2.readLine();
                 int num = Integer.parseInt(num2);
@@ -121,25 +123,25 @@ public class siriusadmin {
                 num2 = Integer.toString(num);
                 br2.close();
 
-                String content = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\test.txt"));
-                content = content.replaceAll(a, "xxx" + num);
-                IOUtils.write(content, new FileOutputStream("C:\\Users\\user\\Desktop\\test.txt"));
+                String content = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
+                content = content.replaceAll(a, "xxx" + num2);
+                IOUtils.write(content, new FileOutputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
 
 
-                FileWriter wr = new FileWriter("C:\\Users\\user\\Desktop\\test2.txt");
-                wr.write("xxx" + num);
+                FileWriter wr = new FileWriter("C:\\Users\\user\\Desktop\\for autotest\\test2.txt");
+                wr.write("xxx" + num2);
                 wr.close();
 
-                FileWriter wr2 = new FileWriter("C:\\Users\\user\\Desktop\\test3.txt");
+                FileWriter wr2 = new FileWriter("C:\\Users\\user\\Desktop\\for autotest\\test3.txt");
                 wr2.write(num2);
                 wr2.close();
 
 
                 String s = "";
-                Scanner in = new Scanner(new File("C:\\Users\\user\\Desktop\\test.txt"));
+                Scanner in = new Scanner(new File("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
                 while (in.hasNext())
                     s += in.nextLine() + "\r\n";
-                in.close();
+
 
                 StringSelection selection = new StringSelection(s);
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -148,23 +150,21 @@ public class siriusadmin {
                 driver.findElement(By.xpath("//*[@id='HarnessFooter']/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[2]/button")).click();
 
 
-/**здесь смена опф*/
-                String content3 = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\test.txt"));
-                content3= content3.replaceAll(IDofOPF1.get(i), IDofOPF1.get(i + 1));
-                IOUtils.write(content3, new FileOutputStream("C:\\Users\\user\\Desktop\\test.txt"));
+/**здесь смена опф*/System.out.println(IDofOPF);
+                String content3 = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
+                content3 = content3.replaceAll(IDofOPF.get(i), IDofOPF.get(i + 1));
+                IOUtils.write(content3, new FileOutputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
 
-
-                Conec = i+1; /**запоминаем айди в аррейлисте*/
 
 
                 i++;
-                Thread.sleep(5000);
+                Conec = i; /**запоминаем айди в аррейлисте*/
+                //Thread.sleep(5000);
             }
-                System.out.println(Conec);
             /**возврат на 1 опф*/
-            String content2 = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\test.txt"));
-            content2 = content2.replaceAll(IDofOPF1.get(Conec), IDofOPF1.get(0));
-            IOUtils.write(content2, new FileOutputStream("C:\\Users\\user\\Desktop\\test.txt"));
+            String content2 = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
+            content2 = content2.replaceAll(IDofOPF.get(Conec), IDofOPF.get(0));
+            IOUtils.write(content2, new FileOutputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
 
 
       /*      BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test.txt"));

@@ -18,7 +18,7 @@ public class VariableA {
          try {
 
 
-                 BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\OPF_VALUE.txt"));
+                 BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\for autotest\\OPF_VALUE.txt"));
                  // a = br.readLine();
              List<String> IDofOPF = new ArrayList<String>();
             // LinkedHashSet<String>IFR = new LinkedHashSet<>();
@@ -39,7 +39,7 @@ public class VariableA {
                System.out.println(IDofOPF);
 
              List<String> IDofOPF1 = new ArrayList<>(new LinkedHashSet<>(IDofOPF));
-             FileWriter wr = new FileWriter("C:\\Users\\user\\Desktop\\OPF_work_Value.txt");
+             FileWriter wr = new FileWriter("C:\\Users\\user\\Desktop\\for autotest\\OPF_work_Value.txt");
 
 
 
