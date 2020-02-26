@@ -7,30 +7,28 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.*;
 import java.util.List;
-
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Condition.*;
+import java.util.concurrent.TimeUnit;
 
 public class siriusadmin {
+    public String crm_id;
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+
+    public String Sirius() throws InterruptedException, IOException /**main(String[] args) throws InterruptedException, IOException */{
 
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
 
         WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         {
-            driver.get("http://sbpgs2-qa.bpm.lanit:9080/prweb/PRServlet/3EmOSbam7UQMneCCqrdaiQ%5B%5B*/!STANDARD");
+            driver.get("http://sbpgs2-qa-2.bpm.lanit:10908/prweb/PRServlet/3EmOSbam7UQMneCCqrdaiQ%5B%5B*/!STANDARD");
             driver.manage().window().maximize();
             WebElement element = driver.findElement(By.className("inputBox"));
             element.click();
@@ -91,12 +89,12 @@ public class siriusadmin {
 
             int i = 0;
             int Conec = 0;
-            while (i < 2) {
+            while (i < 1) {
 
 
                 driver.findElement(By.xpath("//*[@id=\"HarnessFooter\"]/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[1]")).click();
 
-
+Thread.sleep(2000);
                 element = driver.findElement(By.xpath("//*[@id='EXPAND']"));
                 element.click();
                 // VariableA XMLka = new VariableA();
@@ -147,7 +145,9 @@ public class siriusadmin {
                 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                 clipboard.setContents(selection, selection);
                 element.sendKeys(Keys.CONTROL, "v");
+                Thread.sleep(2000);
                 driver.findElement(By.xpath("//*[@id='HarnessFooter']/tbody/tr/td[2]/table/tbody/tr/td[2]/nobr/table/tbody/tr/td[2]/button")).click();
+                Thread.sleep(5000);
 
 
 /**здесь смена опф*/System.out.println(IDofOPF);
@@ -155,16 +155,25 @@ public class siriusadmin {
                 content3 = content3.replaceAll(IDofOPF.get(i), IDofOPF.get(i + 1));
                 IOUtils.write(content3, new FileOutputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
 
-
+                this.crm_id="xxx"+num2;
 
                 i++;
                 Conec = i; /**запоминаем айди в аррейлисте*/
                 //Thread.sleep(5000);
+
             }
+            driver.close();
+            for (String winHandle : driver.getWindowHandles()) {
+                driver.switchTo().window(winHandle);
+            }
+            driver.close();
+
             /**возврат на 1 опф*/
             String content2 = IOUtils.toString(new FileInputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
             content2 = content2.replaceAll(IDofOPF.get(Conec), IDofOPF.get(0));
             IOUtils.write(content2, new FileOutputStream("C:\\Users\\user\\Desktop\\for autotest\\test.txt"));
+
+
 
 
       /*      BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\test.txt"));
@@ -232,5 +241,14 @@ public class siriusadmin {
 
 
         }
+
+
+
+        return crm_id;
+    }
+
+    public String getID() throws IOException, InterruptedException {
+Sirius();
+return crm_id;
     }
 }

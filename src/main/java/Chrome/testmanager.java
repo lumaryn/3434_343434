@@ -1,10 +1,8 @@
-package manager;
+package Chrome;
 
-import Chrome.siriusadmin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +11,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class testcrmmanager1 {
+public class testmanager {
     public static void main(String[] args) throws InterruptedException /** throws InterruptedException, IOException, NoSuchElementException */{
         siriusadmin sir = new siriusadmin();
         String s = null;
@@ -25,9 +23,9 @@ public class testcrmmanager1 {
             e.printStackTrace();
         }
 
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        System.setProperty("webdriver.ie.driver", "C:\\IEDriverServer_Win32_3.8.0\\IEDriverServer.exe");
 
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new InternetExplorerDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
         {
@@ -36,7 +34,7 @@ public class testcrmmanager1 {
 
             WebElement element = driver.findElement(By.className("inputBox"));
             element.click();
-            // element.sendKeys("TestClientManager_CA_SBPGS2");
+           // element.sendKeys("TestClientManager_CA_SBPGS2");
             element.sendKeys("Testcrmmanager1");
             element = driver.findElement(By.id("txtPassword"));
             element.click();
@@ -84,44 +82,40 @@ public class testcrmmanager1 {
             element = driver.findElement(By.xpath("//*[@name='WorkListFilter_pyDisplayHarness.WorkSearch_19']"));
             element.click();
             try {
-                Thread.sleep(2000);
+                Thread.sleep(6000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            try{
-                boolean displayed;
-                do{
+           try{
+               boolean displayed;
+               do{
 
                     displayed = driver.findElement(By.xpath("//*[@class='dataLabelRead gridCell']")).isDisplayed();
                     element = driver.findElement(By.xpath("//*[@name='WorkListFilter_pyDisplayHarness.WorkSearch_19']"));
                     element.click();
-                    Thread.sleep(2000);
+                    Thread.sleep(10000);
 
-                } while(displayed);
-            }
-            catch (RuntimeException e) {
-                //Thread.sleep(5000);
-                element = driver.findElement(By.xpath("//*[@id=\"$PpgRepPgSubSectionUserWorkListGridB$ppxResults$l1\"]"));
-                element.click();
-            }
+            } while(displayed);
+           }
+           catch (RuntimeException e) {
+               //Thread.sleep(5000);
+               element = driver.findElement(By.xpath("//*[@id=\"$PpgRepPgSubSectionUserWorkListGridB$ppxResults$l1\"]"));
+            element.click();
+           }
 
-            //  wb = wait(10).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@name='BASE_REF']/div[@id='RULE_KEY'][@index='1'][@version = '1']")));
+              //  wb = wait(10).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@name='BASE_REF']/div[@id='RULE_KEY'][@index='1'][@version = '1']")));
             //element = driver.findElement(By.xpath("//*[@name='WorkListFilter_pyDisplayHarness.WorkSearch_19']"));
-            // element.click();
+           // element.click();
 
 
-             Thread.sleep(2500);
-            //driver.close();
-            driver.switchTo().frame("PegaGadget0Ifr");
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//button[text()='Рассчитать зону']")).click();
-            Thread.sleep(1500);
-            driver.findElement(By.xpath("//input[@class='select-dropdown'][@value='Выберите']")).click();
-            driver.findElement(By.xpath("//*[@id=\"select-options-50403270-a020-011d-4748-bc8124a35253\"]/li[2]/span")).click();
             // Thread.sleep(3500);
-            //driver.findElement(By.xpath("//*[@id='RULE_KEY']/div/div/div/div/fieldset/div/div/div/div/input")).click();
-            //driver.findElement(By.xpath("//*[@id='select-options-43b11c3a-4644-465d-b128-5d11521700a1']/li[2]/span")).click();
+            //driver.close();
+
+            driver.findElement(By.xpath(".//span[text()='Расчет зоны Fraud-риска']")).click();
+           // Thread.sleep(3500);
+            driver.findElement(By.xpath("//*[@id='RULE_KEY']/div/div/div/div/fieldset/div/div/div/div/input")).click();
+            driver.findElement(By.xpath("//*[@id='select-options-43b11c3a-4644-465d-b128-5d11521700a1']/li[2]/span")).click();
 
         }
     }
